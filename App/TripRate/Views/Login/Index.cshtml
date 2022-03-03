@@ -1,0 +1,32 @@
+﻿@model TripRate.Models.ModelUser
+
+<h1>Login</h1>
+@using (Html.BeginForm())
+{
+    <div class="form-group">
+        <div class="form-group">
+            @Html.LabelFor(x => x.Email)
+            <div>
+                @Html.TextBoxFor(x => x.Email, new { @placeholder = "Enter your Email" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(x => x.Password)
+            <div>
+                @Html.PasswordFor(x => x.Password, new { @placeholder = "Enter your password" })
+            </div>
+        </div>
+
+        <div class="form-text">
+            <input class="btn-primary" type="submit" value="Login" asp-action="Login" />
+        </div>
+    </div>
+}
+
+@using (Html.BeginForm())
+{
+    <div>
+        <input class="btn-primary" type="submit" value="Register" asp-action="UserRegister" />
+    </div>
+}
