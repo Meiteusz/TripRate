@@ -1,7 +1,25 @@
-﻿namespace Models
+﻿using Models.DTO_s.Responses;
+using System.Collections.Generic;
+
+namespace Models
 {
     public abstract class EntityBase<T>
     {
+        /// <summary>
+        /// Save the any entity in a specific context
+        /// </summary>
+        /// <param name="context">specific context witch the entity is inserted</param>
+        /// <returns>A Response Dto with Success and Message</returns>
+        public virtual Response Save(TripRateContext context)
+        {
+            context.ValidateStateOfEntity(this);
+            return context.ResponseSaveChanges();
+        }
+
+        /// <summary>
+        /// Save the any entity in a any context
+        /// </summary>
+        /// <returns>A Response Dto with Success and Message</returns>
         public virtual Response Save()
         {
             return new Response();

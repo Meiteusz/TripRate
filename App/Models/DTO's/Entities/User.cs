@@ -1,7 +1,9 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Models.DTO_s.Responses;
 using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Linq;
 
 namespace Models
 {
@@ -40,7 +42,7 @@ namespace Models
             using (var context = new TripRateContext())
             {
                 context.Users.Add(this);
-                var response = new Response(context);
+                var response = base.Save(context);
                 if (response.Success)
                 {
                     this.Saved();
@@ -52,6 +54,22 @@ namespace Models
         public override Response Saved()
         {
             return base.Saved();
+        }
+
+        public static User GetFirstOrDefault(string email, string password)
+        {
+            using (var context = new TripRateContext())
+            {
+                return context.Users.SingleOrDefault(x => x.Email == email && x.Password == password);
+            }
+        }
+
+        public static User GetFirstOrDefault(int id)
+        {
+            using (var context = new TripRateContext())
+            {
+                return context.Users.SingleOrDefault(x => x.Id == id);
+            }
         }
     }
 }

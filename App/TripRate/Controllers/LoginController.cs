@@ -9,8 +9,8 @@ namespace TripRate.Controllers
 {
     public class LoginController : Controller
     {
-        public readonly IUserController UserController;
-        public readonly IMapper Mapper;
+        private readonly IUserController UserController;
+        private readonly IMapper Mapper;
 
         public LoginController(IUserController userController, IMapper mapper)
         {
@@ -23,13 +23,28 @@ namespace TripRate.Controllers
             return View();
         }
 
+        public async Task<IActionResult> Login(ModelUser user)
+        {
+            var response = UserController.LoginByEmailAndPassword(user.Email, user.Password);
+            if (response.Success)
+            {
+                return RedirectToAction("Index", "Home");
+            }
+            return View("Index");
+        }
+
         public async Task<IActionResult> UserRegister() => View();
 
         public async Task<IActionResult> ConfirmUserRegister(ModelUser user)
         {
             var userCreate = Mapper.Map<User>(user);
-            var a = UserController.RegisterUser(userCreate);
-            return View();
+            var response = UserController.RegisterUser(userCreate);
+
+            if (response.Success)
+            {
+                return View("Index");
+            }
+            return View("UserRegister");
         }
     }
 }
