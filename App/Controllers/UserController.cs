@@ -1,4 +1,5 @@
 ﻿using Models;
+using Models.DTO_s.CustomExceptions;
 using Models.DTO_s.Responses;
 
 namespace Controllers
@@ -22,6 +23,19 @@ namespace Controllers
         public Response RegisterUser(User user)
         {
             return user.Save();
+        }
+
+        public Response ResetPassword(string email)
+        {
+            var response = UserService.CheckEmailRegisterd(email);
+
+            if (response.Success)
+            {
+                // send email code to resed password
+                return new Response();
+            }
+
+            return new ResponseException() { Exception = new FailedToFindEmailException(email) };
         }
     }
 }

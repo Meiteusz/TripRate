@@ -5,5 +5,6 @@ namespace Models
     public interface IUserService
     {
         ResponseData<User> LoginByEmailAndPassword(string email, string password);
+        ResponseData<string> CheckEmailRegisterd(string email);
     }
 }

@@ -1,10 +1,10 @@
 ﻿using AutoMapper;
 using Controllers;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Models;
 using System.Threading.Tasks;
 using TripRate.Models;
-
 namespace TripRate.Controllers
 {
     public class LoginController : Controller
@@ -23,6 +23,13 @@ namespace TripRate.Controllers
             return View();
         }
 
+        [HttpGet]
+        public async Task<IActionResult> UserRegister() => View();
+
+        [HttpGet]
+        public async Task<IActionResult> ForgotPassword() => View();
+
+        [HttpPost]
         public async Task<IActionResult> Login(ModelUser user)
         {
             var response = UserController.LoginByEmailAndPassword(user.Email, user.Password);
@@ -33,8 +40,7 @@ namespace TripRate.Controllers
             return View("Index");
         }
 
-        public async Task<IActionResult> UserRegister() => View();
-
+        [HttpPost]
         public async Task<IActionResult> ConfirmUserRegister(ModelUser user)
         {
             var userCreate = Mapper.Map<User>(user);
@@ -45,6 +51,13 @@ namespace TripRate.Controllers
                 return View("Index");
             }
             return View("UserRegister");
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> SendEmailToResetPassword(string email)
+        {
+            var response = UserController.ResetPassword(email);
+            return View();
         }
     }
 }

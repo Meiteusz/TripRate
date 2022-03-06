@@ -1,9 +1,12 @@
 ﻿@model TripRate.Models.ModelUser
 
-<h1>Login</h1>
+<link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+<link rel="stylesheet" href="~/css/site.css" />
+
 @using (Html.BeginForm())
 {
-    <div class="form-group">
+    <div class="center">
+        <h1>Login</h1>
         <div class="form-group">
             @Html.LabelFor(x => x.Email)
             <div>
@@ -17,16 +20,12 @@
                 @Html.PasswordFor(x => x.Password, new { @placeholder = "Enter your password" })
             </div>
         </div>
-
+        <div>
+            <a class="navbar-brand" asp-action="ForgotPassword">Forgot my password</a>
+        </div>
         <div class="form-text">
             <input class="btn-primary" type="submit" value="Login" asp-action="Login" />
+            <input class="btn-primary" type="submit" value="Register" asp-action="UserRegister" />
         </div>
-    </div>
-}
-
-@using (Html.BeginForm())
-{
-    <div>
-        <input class="btn-primary" type="submit" value="Register" asp-action="UserRegister" />
     </div>
 }
