@@ -1,6 +1,5 @@
 ﻿using AutoMapper;
 using Controllers;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Models;
 using System.Threading.Tasks;
@@ -53,11 +52,11 @@ namespace TripRate.Controllers
             return View("UserRegister");
         }
 
-        [HttpPost]
-        public async Task<IActionResult> SendEmailToResetPassword(string email)
-        {
-            var response = UserController.ResetPassword(email);
-            return View();
-        }
+        //[HttpPost]
+        //public async Task<IActionResult> SendEmailToResetPassword(string email)
+        //{
+        //    //var response = UserController.ResetPassword(email);
+        //    return View();
+        //}
     }
 }
