@@ -22,7 +22,6 @@ namespace TripRate.Controllers
             return View();
         }
 
-        [HttpGet]
         public async Task<IActionResult> UserRegister() => View();
 
         [HttpGet]
@@ -52,11 +51,11 @@ namespace TripRate.Controllers
             return View("UserRegister");
         }
 
-        //[HttpPost]
-        //public async Task<IActionResult> SendEmailToResetPassword(string email)
-        //{
-        //    //var response = UserController.ResetPassword(email);
-        //    return View();
-        //}
+        [HttpPost]
+        public async Task<IActionResult> SendEmailToResetPassword(string email)
+        {
+            //var response = UserController.ResetPassword(email);
+            return View();
+        }
     }
 }

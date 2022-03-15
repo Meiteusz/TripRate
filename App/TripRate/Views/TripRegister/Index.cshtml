@@ -1,0 +1,37 @@
+﻿@model TripRate.Models.ModelTrip
+
+@using (Html.BeginForm())
+{
+    <div>
+        <h4>Register a trip</h4>
+        <div>
+            @Html.LabelFor(x => x.Title)
+            <div>
+                @Html.TextBoxFor(x => x.Title)
+            </div>
+        </div>
+        <div>
+            @Html.LabelFor(x => x.Image)
+            <div>
+                <input type="file" value="Photo" />
+            </div>
+        </div>
+        <div>
+            @Html.LabelFor(x => x.Description)
+            <div>
+                @Html.TextAreaFor(x => x.Description)
+            </div>
+        </div>
+        <div>
+            @Html.LabelFor(x => x.Localization)
+            <div>
+                @Html.TextBoxFor(x => x.Localization)
+            </div>
+        </div>
+        <div>
+            <input type="submit" value="Register"/>
+            <input type="submit" value="Register/New"/>
+            <input type="submit" value= "Cancel"/>
+        </div>
+    </div>
+}

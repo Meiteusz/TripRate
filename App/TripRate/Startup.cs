@@ -28,6 +28,13 @@ namespace TripRate
                 mc.AddProfile(new MappingProfile());
             });
 
+            services.AddAuthentication().AddGoogle(options =>
+            {
+                IConfigurationSection googleAuth = Configuration.GetSection("Authentication:Google");
+                options.ClientId = googleAuth["ClientId"];
+                options.ClientSecret = googleAuth["ClientSecret"];
+            });
+
             IMapper mapper = mappingConfig.CreateMapper();
             services.AddSingleton(mapper);
             Injetor.InjectService(services);
@@ -60,8 +67,8 @@ namespace TripRate
             app.UseMvc(routes =>
             {
                 routes.MapRoute(
-                    name: "Login",
-                    template: "{controller=Login}/{action=Index}/{id?}");
+                    name: "Home",
+                    template: "{controller=Home}/{action=Index}/{id?}");
             });
         }
     }

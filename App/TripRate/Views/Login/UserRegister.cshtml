@@ -1,33 +1,64 @@
 ﻿@model TripRate.Models.ModelUser
 
+<link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+<link rel="stylesheet" href="~/css/site.css" />
 
 <h1>Register</h1>
 @using (Html.BeginForm())
 {
-    <div>
-        <div class="form-group">
-            @Html.LabelFor(x => x.Name)
-            <div>
-                @Html.TextBoxFor(x => x.Name)
+    <body>
+        <div>
+            <div class="form-group">
+                @Html.LabelFor(x => x.Name)
+                <div>
+                    @Html.TextBoxFor(x => x.Name)
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(x => x.Email)
+                <div>
+                    @Html.TextBoxFor(x => x.Email)
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(x => x.Password)
+                <div>
+                    @Html.TextBoxFor(x => x.Password)
+                </div>
+            </div>
+
+            <div class="form-text">
+                <input class="btn-primary" type="submit" value="Confirm" asp-action="ConfirmUserRegister" />
+                <input class="btn-primary" type="submit" value="Confirm" />
             </div>
         </div>
+    </body>
+    <!--
+    <body>
+        <div class="slidershow middle">
+            <div><h3>Welcome to TripRate *Name of the user here*</h3></div>
+            <div class="slides">
+                <input type="radio" name="r" id="r1" checked="checked">
+                <input type="radio" name="r" id="r2">
+                <input type="radio" name="r" id="r3">
+                <div class="slide s1">
+                    <img src="~/Images/Login/UserRegister/1.png">
+                </div>
+                <div class="slide">
+                    <img src="~/Images/Login/UserRegister/2.png">
+                </div>
+                <div class="slide">
+                    <img src="~/Images/Login/UserRegister/3.png">
+                </div>
 
-        <div class="form-group">
-            @Html.LabelFor(x => x.Email)
-            <div>
-                @Html.TextBoxFor(x => x.Email)
+                <div class="navigation">
+                    <label for="r1" class="bar"></label>
+                    <label for="r2" class="bar"></label>
+                    <label for="r3" class="bar"></label>
+                </div>
             </div>
         </div>
-
-        <div class="form-group">
-            @Html.LabelFor(x => x.Password)
-            <div>
-                @Html.TextBoxFor(x => x.Password)
-            </div>
-        </div>
-
-        <div class="form-text">
-            <input class="btn-primary" type="submit" value="Confirm" asp-action="ConfirmUserRegister" />
-        </div>
-    </div>
+    </body> -->
 }
