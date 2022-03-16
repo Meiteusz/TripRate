@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
 using Microsoft.Extensions.Configuration;
+using Models.DTO_s.Entities;
 using System;
 using System.Linq;
 
@@ -9,6 +10,7 @@ namespace Models
     public class TripRateContext : DbContext
     {
         public DbSet<User> Users { get; set; }
+        public DbSet<Trip> Trips { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
