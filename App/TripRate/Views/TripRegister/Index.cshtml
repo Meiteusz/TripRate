@@ -1,37 +1,51 @@
 ﻿@model TripRate.Models.ModelTrip
 
+<link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+<link rel="stylesheet" href="~/css/site.css" />
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCjBuHsE_sHtclNAiW8K04yQthDTL-tDC0&callback=initAutoComplete"></script>
+<script async src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCjBuHsE_sHtclNAiW8K04yQthDTL-tDC0&libraries=places&callback=initAutoComplete"></script>
+
 @using (Html.BeginForm())
 {
-    <div>
-        <h4>Register a trip</h4>
+    <body>
         <div>
-            @Html.LabelFor(x => x.Title)
-            <div>
-                @Html.TextBoxFor(x => x.Title)
+            <h4>Register a trip</h4>
+            <div class="form-group">
+                @Html.LabelFor(x => x.Title)
+                <div>
+                    @Html.TextBoxFor(x => x.Title, new { @class = "form-control" })
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(x => x.Image)
+                <div>
+                    <input type="file" value="Photo" />
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(x => x.Description)
+                <div>
+                    @Html.TextAreaFor(x => x.Description, new { @class = "form-control" })
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(x => x.Localization)
+                <div>
+                    @Html.TextBoxFor(x => x.Localization, new { id = "SearchLocalization", @class = "form-control" })
+                </div>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Register" asp-action="RegisterTrip" />
+                <input type="submit" value="Register/New" asp-action="RegisterAndNewTrip" />
+                <input type="submit" value="Cancel" asp-action="Cancel" />
             </div>
         </div>
-        <div>
-            @Html.LabelFor(x => x.Image)
-            <div>
-                <input type="file" value="Photo" />
-            </div>
-        </div>
-        <div>
-            @Html.LabelFor(x => x.Description)
-            <div>
-                @Html.TextAreaFor(x => x.Description)
-            </div>
-        </div>
-        <div>
-            @Html.LabelFor(x => x.Localization)
-            <div>
-                @Html.TextBoxFor(x => x.Localization)
-            </div>
-        </div>
-        <div>
-            <input type="submit" value="Register"/>
-            <input type="submit" value="Register/New"/>
-            <input type="submit" value= "Cancel"/>
-        </div>
-    </div>
+    </body>
 }
+
+<script>
+initAutoComplete = () => {
+    var input = document.getElementById('SearchLocalization');
+    var autocomplete = new google.maps.places.Autocomplete(input);
+}
+</script>
