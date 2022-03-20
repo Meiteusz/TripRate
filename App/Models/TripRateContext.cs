@@ -4,6 +4,8 @@ using Microsoft.Extensions.Configuration;
 using Models.DTO_s.Entities;
 using System;
 using System.Linq;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace Models
 {
@@ -23,15 +25,17 @@ namespace Models
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<User>().Property<DateTime>("CreatedDate");
-            modelBuilder.Entity<User>().Property<DateTime>("UpdatedDate");
+            modelBuilder.Entity<Trip>().Property<DateTime>("CreatedDate");
+            modelBuilder.Entity<Trip>().Property<DateTime>("UpdatedDate");
+            //modelBuilder.Entity<Trip>().Property<int>("UserCreated");
+            //modelBuilder.Entity<Trip>().Property<int>("UserUpdated");
         }
 
-        public override int SaveChanges()
+        public override Task<int> SaveChangesAsync(bool acceptAllChangesOnSuccess, CancellationToken cancellationToken = default)
         {
             var entries = ChangeTracker.Entries()
-                                       .Where(x => x.State == EntityState.Added 
-                                                || x.State == EntityState.Modified);
+                           .Where(x => x.State == EntityState.Added
+                                    || x.State == EntityState.Modified);
 
             foreach (var item in entries)
             {
@@ -41,10 +45,10 @@ namespace Models
                     item.Property("CreatedDate").CurrentValue = DateTime.Now;
             }
 
-            return base.SaveChanges();
+            return base.SaveChangesAsync();
         }
 
-        public Response ResponseSaveChanges()
+        public Response ResponseSaveChangesAsync()
         {
             try
             {

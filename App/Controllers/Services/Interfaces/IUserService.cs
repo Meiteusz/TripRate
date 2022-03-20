@@ -1,6 +1,7 @@
-﻿using Models.DTO_s.Responses;
+﻿using Models;
+using Models.DTO_s.Responses;
 
-namespace Models
+namespace Controllers
 {
     public interface IUserService
     {

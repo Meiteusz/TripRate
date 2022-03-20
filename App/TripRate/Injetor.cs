@@ -1,4 +1,7 @@
 ﻿using Controllers;
+using Controllers.Interfaces;
+using Controllers.Services;
+using Controllers.Services.Interfaces;
 using Microsoft.Extensions.DependencyInjection;
 using Models;
 using Models.Queries;
@@ -13,6 +16,10 @@ namespace TripRate
             service.AddScoped<IUserController, UserController>();
             service.AddScoped<IUserService, UserService>();
             service.AddScoped<IUserQuery, UserQuery>();
+
+            service.AddScoped<ITripController, TripController>();
+            service.AddScoped<ITripService, TripService>();
+            service.AddScoped<ITripQuery, TripQuery>();
         }
     }
 }

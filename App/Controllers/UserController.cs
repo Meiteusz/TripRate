@@ -6,18 +6,16 @@ namespace Controllers
 {
     public class UserController : IUserController
     {
-        private readonly IUserService UserService;
+        private readonly IUserService _userService;
 
         public UserController(IUserService userService)
         {
-            this.UserService = userService;
+            this._userService = userService;
         }
-
-        public User CreateInstance() => User.CreateInstance();
 
         public ResponseData<User> LoginByEmailAndPassword(string email, string password)
         {
-            return UserService.LoginByEmailAndPassword(email, password);
+            return _userService.LoginByEmailAndPassword(email, password);
         }
 
         public Response RegisterUser(User user)
@@ -27,7 +25,7 @@ namespace Controllers
 
         public Response ResetPassword(string email)
         {
-            var response = UserService.CheckEmailRegisterd(email);
+            var response = _userService.CheckEmailRegisterd(email);
 
             if (response.Success)
             {

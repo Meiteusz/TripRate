@@ -13,7 +13,7 @@ namespace Models
         public virtual Response Save(TripRateContext context)
         {
             context.ValidateStateOfEntity(this);
-            return context.ResponseSaveChanges();
+            return context.ResponseSaveChangesAsync();
         }
 
         /// <summary>

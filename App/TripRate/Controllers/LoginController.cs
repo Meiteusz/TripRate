@@ -8,13 +8,13 @@ namespace TripRate.Controllers
 {
     public class LoginController : Controller
     {
-        private readonly IUserController UserController;
-        private readonly IMapper Mapper;
+        private readonly IUserController _userController;
+        private readonly IMapper _mapper;
 
         public LoginController(IUserController userController, IMapper mapper)
         {
-            this.UserController = userController;
-            this.Mapper = mapper;
+            this._userController = userController;
+            this._mapper = mapper;
         }
 
         public IActionResult Index()
@@ -30,7 +30,7 @@ namespace TripRate.Controllers
         [HttpPost]
         public async Task<IActionResult> Login(ModelUser user)
         {
-            var response = UserController.LoginByEmailAndPassword(user.Email, user.Password);
+            var response = _userController.LoginByEmailAndPassword(user.Email, user.Password);
             if (response.Success)
             {
                 return RedirectToAction("Index", "Home");
@@ -41,8 +41,8 @@ namespace TripRate.Controllers
         [HttpPost]
         public async Task<IActionResult> ConfirmUserRegister(ModelUser user)
         {
-            var userCreate = Mapper.Map<User>(user);
-            var response = UserController.RegisterUser(userCreate);
+            var userCreate = _mapper.Map<User>(user);
+            var response = _userController.RegisterUser(userCreate);
 
             if (response.Success)
             {

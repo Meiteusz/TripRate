@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Models;
+using Models.DTO_s.Entities;
 using TripRate.Models;
 
 namespace TripRate
@@ -9,6 +10,7 @@ namespace TripRate
         public MappingProfile()
         {
             CreateMap<User, ModelUser>().ReverseMap();
+            CreateMap<Trip, ModelTrip>().ReverseMap();
         }
     }
 }

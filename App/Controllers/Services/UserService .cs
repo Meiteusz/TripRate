@@ -1,15 +1,16 @@
-﻿using Models.DTO_s.Responses;
+﻿using Models;
+using Models.DTO_s.Responses;
 using Models.Queries.Interfaces;
 
-namespace Models
+namespace Controllers
 {
     public class UserService : IUserService
     {
-        private readonly IUserQuery UserQuery;
+        private readonly IUserQuery _userQuery;
 
         public UserService(IUserQuery userQuery)
         {
-            this.UserQuery = userQuery;
+            this._userQuery = userQuery;
         }
 
         public ResponseData<User> LoginByEmailAndPassword(string email, string password)
@@ -29,7 +30,7 @@ namespace Models
 
         public ResponseData<string> CheckEmailRegisterd(string email)
         {
-            var userEmail = UserQuery.GetUserByEmail(email) == null ? string.Empty : email;
+            var userEmail = _userQuery.GetUserByEmail(email) == null ? string.Empty : email;
 
             return new ResponseData<string>()
             {
