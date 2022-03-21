@@ -1,0 +1,36 @@
+﻿@model TripRate.Models.ModelTrip
+
+<link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+<link rel="stylesheet" href="~/css/site.css" />
+
+<h3>Trips</h3>
+
+<div>
+    <a asp-action="RegisterTrip">Register a trip</a>
+</div>
+
+@using (Html.BeginForm())
+{
+    <body>
+        <div class="panel panel-primary">
+            <table class="table table-condensed table-striped">
+                <thead>
+                    <tr>
+                        <th>@Html.LabelFor(x => x.Title)</th>
+                        <th>@Html.LabelFor(x => x.Description)</th>
+                        <th>@Html.LabelFor(x => x.Localization)</th>
+                    </tr>
+                </thead>
+                @foreach (var trip in ViewBag.QueryTrips)
+                {
+                    <tr>
+                        <td>@trip.Title</td>
+                        <td>@trip.Description</td>
+                        <td>@trip.Localization</td>
+                        <td><input type="button" value="Details" /></td>
+                    </tr>
+                }
+            </table>
+        </div>
+    </body>
+}

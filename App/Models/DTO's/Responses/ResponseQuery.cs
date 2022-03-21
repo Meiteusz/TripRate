@@ -4,6 +4,6 @@ namespace Models.DTO_s.Responses
 {
     public class ResponseQuery<T> : Response
     {
-        public IEnumerable<T> Query { get; set; }
+        public IList<T> Query { get; set; } = new List<T>();
     }
 }

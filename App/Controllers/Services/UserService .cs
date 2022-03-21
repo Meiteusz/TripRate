@@ -1,4 +1,5 @@
-﻿using Models;
+﻿using Controllers.Administration;
+using Models;
 using Models.DTO_s.Responses;
 using Models.Queries.Interfaces;
 
@@ -20,6 +21,7 @@ namespace Controllers
             if (user == null)
                 return new ResponseData<User>(); //throw a Custom Exception
 
+            TripRateAdministration.SetCurrentUserLogged(user);
             return new ResponseData<User>()
             {
                 Success = true,
