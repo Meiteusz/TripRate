@@ -1,7 +1,9 @@
 ﻿using AutoMapper;
 using Controllers.Interfaces;
 using Microsoft.AspNetCore.Mvc;
+using Models.DTO_s.Entities;
 using System.Threading.Tasks;
+using TripRate.Models;
 
 namespace TripRate.Controllers
 {
@@ -24,9 +26,36 @@ namespace TripRate.Controllers
             return View();
         }
 
+        [HttpGet]
         public async Task<IActionResult> RegisterTrip()
         {
-            return RedirectToAction("Index","TripRegister");
+            return View();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> ConfirmRegisterTrip(ModelTrip modelTrip)
+        {
+            var trip = _mapper.Map<Trip>(modelTrip);
+            var response = _tripController.RegisterTrip(trip);
+
+            if (response.Success)
+            {
+                return View("Index");
+            }
+            else
+            {
+                return RedirectToAction("Error", "ErrorBag");
+            }
+        }
+
+        public async Task<IActionResult> ConfirmAndNewTrip()
+        {
+            return View();
+        }
+
+        public async Task<IActionResult> Cancel()
+        {
+            return View();
         }
     }
 }

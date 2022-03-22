@@ -8,5 +8,8 @@ namespace Controllers.Administration
 
         public static void SetCurrentUserLogged(User user) 
             => CurrentUserLogged = user;
+
+        public static bool ExistsUserLogged()
+            => CurrentUserLogged != null;
     }
 }

@@ -6,6 +6,7 @@ namespace TripRate.Controllers
     {
         public IActionResult Index()
         {
+            TempData["ExistsUserLogged"] = false;
             return View();
         }
     }

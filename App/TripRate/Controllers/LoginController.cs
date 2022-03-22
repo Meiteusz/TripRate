@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Controllers;
+using Controllers.Administration;
 using Microsoft.AspNetCore.Mvc;
 using Models;
 using System.Threading.Tasks;
@@ -19,6 +20,7 @@ namespace TripRate.Controllers
 
         public IActionResult Index()
         {
+            TempData["ExistsUserLogged"] = false;
             return View();
         }
 
@@ -33,7 +35,9 @@ namespace TripRate.Controllers
             var response = _userController.LoginByEmailAndPassword(user.Email, user.Password);
             if (response.Success)
             {
-                return RedirectToAction("Index", "Home");
+                TempData["ExistsUserLogged"] = TripRateAdministration.ExistsUserLogged();
+                //return RedirectToAction("Index", "Home");
+                return View("Index");
             }
             return View("Index");
         }

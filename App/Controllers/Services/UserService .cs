@@ -18,7 +18,7 @@ namespace Controllers
         {
             var user = User.GetFirstOrDefault(email, password);
 
-            if (user == null)
+            if (user.Id == null)
                 return new ResponseData<User>(); //throw a Custom Exception
 
             TripRateAdministration.SetCurrentUserLogged(user);

@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿@using Controllers.Administration
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
@@ -20,11 +21,23 @@
                 <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
                     <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-action="Index" asp-controller="Login">Login</a>
-                        </li>
-                        <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-action="Index" asp-controller="Trips">Trips</a>
                         </li>
+                        @if (TempData["ExistsUserLogged"] != null && (bool)TempData["ExistsUserLogged"])
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-action="Index" asp-controller="Login">Logout</a>
+                            </li>
+                            <li>
+                                <a class="nav-link text-dark" asp-area="" asp-action="" asp-controller="">@TripRateAdministration.CurrentUserLogged.Email</a>
+                            </li>
+                        }
+                        else
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-action="Index" asp-controller="Login">Login</a>
+                            </li>
+                        }
                     </ul>
                 </div>
             </div>

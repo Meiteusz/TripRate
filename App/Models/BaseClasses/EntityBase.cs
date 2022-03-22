@@ -1,7 +1,4 @@
-﻿using Models.DTO_s.Responses;
-using System.Collections.Generic;
-
-namespace Models
+﻿namespace Models
 {
     public abstract class EntityBase<T>
     {
