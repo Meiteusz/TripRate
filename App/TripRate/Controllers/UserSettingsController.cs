@@ -2,7 +2,7 @@
 
 namespace TripRate.Controllers
 {
-    public class HomeController : Controller
+    public class UserSettingsController : Controller
     {
         public IActionResult Index()
         {

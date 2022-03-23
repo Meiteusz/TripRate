@@ -20,7 +20,6 @@ namespace TripRate.Controllers
 
         public IActionResult Index()
         {
-            TempData["ExistsUserLogged"] = false;
             return View();
         }
 
@@ -35,11 +34,15 @@ namespace TripRate.Controllers
             var response = _userController.LoginByEmailAndPassword(user.Email, user.Password);
             if (response.Success)
             {
-                TempData["ExistsUserLogged"] = TripRateAdministration.ExistsUserLogged();
-                //return RedirectToAction("Index", "Home");
-                return View("Index");
+                return RedirectToAction("Index", "Home");
             }
             return View("Index");
+        }
+
+        public async Task<IActionResult> Logout()
+        {
+            TripRateAdministration.SetCurrentUserLogged(null);
+            return RedirectToAction("Index", "Home");
         }
 
         [HttpPost]
@@ -60,6 +63,12 @@ namespace TripRate.Controllers
         {
             //var response = UserController.ResetPassword(email);
             return View();
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> UserSettings()
+        {
+            return RedirectToAction("Index", "UserSettings");
         }
     }
 }

@@ -23,13 +23,13 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-action="Index" asp-controller="Trips">Trips</a>
                         </li>
-                        @if (TempData["ExistsUserLogged"] != null && (bool)TempData["ExistsUserLogged"])
+                        @if (TripRateAdministration.GetCurrentUserLogged().Id > 0)
                         {
                             <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-action="Index" asp-controller="Login">Logout</a>
+                                <a class="nav-link text-dark" asp-area="" asp-action="Logout" asp-controller="Login">Logout</a>
                             </li>
                             <li>
-                                <a class="nav-link text-dark" asp-area="" asp-action="" asp-controller="">@TripRateAdministration.CurrentUserLogged.Email</a>
+                                <a class="nav-link text-dark" asp-area="" asp-action="UserSettings" asp-controller="Login">@TripRateAdministration.GetCurrentUserLogged().Email</a>
                             </li>
                         }
                         else

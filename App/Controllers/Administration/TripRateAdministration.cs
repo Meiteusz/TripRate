@@ -2,9 +2,12 @@
 
 namespace Controllers.Administration
 {
-    public abstract class TripRateAdministration
+    public static class TripRateAdministration
     {
-        public static User CurrentUserLogged { get; private set; }
+        private static User CurrentUserLogged;
+
+        public static User GetCurrentUserLogged()
+            => CurrentUserLogged == null ? new User() : CurrentUserLogged;
 
         public static void SetCurrentUserLogged(User user) 
             => CurrentUserLogged = user;
