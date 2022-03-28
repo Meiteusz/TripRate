@@ -10,7 +10,7 @@
         public virtual Response Save(TripRateContext context)
         {
             context.ValidateStateOfEntity(this);
-            return context.ResponseSaveChangesAsync();
+            return context.ResponseSaveChanges();
         }
 
         /// <summary>

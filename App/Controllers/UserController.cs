@@ -1,4 +1,5 @@
-﻿using Models;
+﻿using Controllers.Administration;
+using Models;
 using Models.DTO_s.CustomExceptions;
 using Models.DTO_s.Responses;
 
@@ -34,6 +35,15 @@ namespace Controllers
             }
 
             return new ResponseException() { Exception = new FailedToFindEmailException(email) };
+        }
+
+        public Response UpdateUserSettings(User user)
+        {
+            var actualUser = TripRateAdministration.GetCurrentUserLogged();
+            actualUser.Name = user.Name;
+            actualUser.Email = user.Email;
+            actualUser.Password = user.Password;
+            return _userService.UpdateUserSettings(actualUser);
         }
     }
 }

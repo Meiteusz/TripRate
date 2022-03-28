@@ -7,5 +7,6 @@ namespace Controllers
     {
         ResponseData<User> LoginByEmailAndPassword(string email, string password);
         ResponseData<string> CheckEmailRegisterd(string email);
+        Response UpdateUserSettings(User user);
     }
 }

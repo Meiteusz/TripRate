@@ -1,1 +1,37 @@
-﻿<h1>User Settings</h1>
+﻿@using Controllers.Administration
+<h3>User Settings</h3>
+@model TripRate.Models.ModelUser
+
+@using (Html.BeginForm())
+{
+    <body>
+        <div>
+            <div class="form-group">
+                @Html.LabelFor(x => x.Name)
+                <div><input type="text" id="txtName" disabled="disabled" value=@TripRateAdministration.GetCurrentUserLogged().Name asp-for="Name" /></div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(x => x.Email)
+                <div><input type="email" id="txtEmail" disabled="disabled" value=@TripRateAdministration.GetCurrentUserLogged().Email asp-for="Email" /></div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(x => x.Password)
+                <div><input type="password" id="txtPassword" disabled="disabled" value=@TripRateAdministration.GetCurrentUserLogged().Password asp-for="Password" /></div>
+            </div>
+            <div>
+                <input class="btn-primary" id="btnEdit" type="button" value="Edit"/>
+                <input class="btn-primary" type="submit" value="Confirm Update" asp-action="ConfirmUpdate"/>
+            </div>
+        </div>
+    </body>
+}
+
+<script>
+    var button = document.getElementById('btnEdit')
+
+    button.onclick = () => {
+        document.getElementById('txtName').disabled = false
+        document.getElementById('txtEmail').disabled = false
+        document.getElementById('txtPassword').disabled = false
+    }
+</script>

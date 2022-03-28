@@ -1,29 +1,43 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 
-namespace Models.DTO_s.Entities
+namespace Models.Entities
 {
     [Index(nameof(Localization), IsUnique = true)]
-    public class Trip : EntityBase<Trip>
+    public class ReviewTrip : EntityBase<ReviewTrip>
     {
+        #region Properties
         [Key]
         public int Id { get; set; }
+
         [Required]
         [StringLength(50)]
         public string Title { get; set; }
+
         public byte[] Image { get; set; }
+
         [Required]
         [StringLength(500)]
         public string Description { get; set; }
+
         [Required]
         [StringLength(100)]
         public string Localization { get; set; }
+
         public int FavCounts { get; set; }
 
-        public static Trip CreateInstance()
+        public int UserId { get; set; }
+
+        [ForeignKey("UserId")]
+        public User User { get; set; }
+
+        #endregion
+
+        public static ReviewTrip CreateInstance()
         {
-            return new Trip();
+            return new ReviewTrip();
         }
 
         public override Response Validate()
@@ -37,7 +51,7 @@ namespace Models.DTO_s.Entities
 
             using (var context = new TripRateContext())
             {
-                context.Trips.Add(this);
+                context.ReviewTrips.Add(this);
                 var response = base.Save(context);
                 if (response.Success)
                 {
@@ -52,11 +66,11 @@ namespace Models.DTO_s.Entities
             return base.Saved();
         }
 
-        public static Trip GetFirstOrDefault(int id)
+        public static ReviewTrip GetFirstOrDefault(int id)
         {
             using (var context = new TripRateContext())
             {
-                return context.Trips.SingleOrDefault(x => x.Id == id);
+                return context.ReviewTrips.SingleOrDefault(x => x.Id == id);
             }
         }
     }

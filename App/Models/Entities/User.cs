@@ -1,7 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Models.DTO_s.Responses;
+using Models.Enums;
 using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 
@@ -10,6 +9,7 @@ namespace Models
     [Index(nameof(Email), IsUnique = true)]
     public class User : EntityBase<User>
     {
+        #region Properties
         [Key]
         public int Id { get; set; }
 
@@ -24,6 +24,11 @@ namespace Models
         [Required]
         [StringLength(50)]
         public string Password { get; set; }
+
+        [Required]
+        public UserTypes UserType { get; set; }
+
+        #endregion
 
         public static User CreateInstance()
         {

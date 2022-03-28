@@ -1,7 +1,7 @@
 ﻿using Controllers.Interfaces;
 using Controllers.Services.Interfaces;
 using Models;
-using Models.DTO_s.Entities;
+using Models.Entities;
 using Models.DTO_s.Responses;
 using Models.Queries.Interfaces;
 
@@ -18,12 +18,12 @@ namespace Controllers
             this._tripQuery = tripQuery;
         }
 
-        public Response RegisterTrip(Trip trip)
+        public Response RegisterTrip(ReviewTrip trip)
         {
             return trip.Save();
         }
 
-        public ResponseQuery<Trip> GetFullQuery()
+        public ResponseQuery<ReviewTrip> GetFullQuery()
         {
             return _tripQuery.GetAll();
         }

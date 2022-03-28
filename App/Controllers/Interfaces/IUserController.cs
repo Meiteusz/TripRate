@@ -8,5 +8,6 @@ namespace Controllers
         ResponseData<User> LoginByEmailAndPassword(string email, string password);
         Response RegisterUser(User user);
         Response ResetPassword(string email);
+        Response UpdateUserSettings(User user);
     }
 }

@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Models;
 
@@ -11,9 +12,10 @@ using Models;
 namespace Models.Migrations
 {
     [DbContext(typeof(TripRateContext))]
-    partial class TripRateContextModelSnapshot : ModelSnapshot
+    [Migration("20220326142005_UserTypeCreated")]
+    partial class UserTypeCreated
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -22,7 +24,7 @@ namespace Models.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
 
-            modelBuilder.Entity("Models.Entities.ReviewTrip", b =>
+            modelBuilder.Entity("Models.DTO_s.Entities.Trip", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -62,7 +64,7 @@ namespace Models.Migrations
                     b.HasIndex("Localization")
                         .IsUnique();
 
-                    b.ToTable("ReviewTrips", (string)null);
+                    b.ToTable("Trips");
                 });
 
             modelBuilder.Entity("Models.User", b =>
@@ -96,7 +98,7 @@ namespace Models.Migrations
                     b.HasIndex("Email")
                         .IsUnique();
 
-                    b.ToTable("Users", (string)null);
+                    b.ToTable("Users");
                 });
 #pragma warning restore 612, 618
         }

@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
 using Microsoft.Extensions.Configuration;
-using Models.DTO_s.Entities;
+using Models.Entities;
 using System;
 using System.Linq;
 using System.Threading;
@@ -12,7 +12,7 @@ namespace Models
     public class TripRateContext : DbContext
     {
         public DbSet<User> Users { get; set; }
-        public DbSet<Trip> Trips { get; set; }
+        public DbSet<ReviewTrip> ReviewTrips { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -25,17 +25,15 @@ namespace Models
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Trip>().Property<DateTime>("CreatedDate");
-            modelBuilder.Entity<Trip>().Property<DateTime>("UpdatedDate");
-            //modelBuilder.Entity<Trip>().Property<int>("UserCreated");
-            //modelBuilder.Entity<Trip>().Property<int>("UserUpdated");
+            modelBuilder.Entity<ReviewTrip>().Property<DateTime>("CreatedDate");
+            modelBuilder.Entity<ReviewTrip>().Property<DateTime>("UpdatedDate");
         }
 
-        public override Task<int> SaveChangesAsync(bool acceptAllChangesOnSuccess, CancellationToken cancellationToken = default)
+        public override int SaveChanges()
         {
             var entries = ChangeTracker.Entries()
-                           .Where(x => x.State == EntityState.Added
-                                    || x.State == EntityState.Modified);
+               .Where(x => x.State == EntityState.Added
+                        || x.State == EntityState.Modified);
 
             foreach (var item in entries)
             {
@@ -45,10 +43,10 @@ namespace Models
                     item.Property("CreatedDate").CurrentValue = DateTime.Now;
             }
 
-            return base.SaveChangesAsync();
+            return base.SaveChanges();
         }
 
-        public Response ResponseSaveChangesAsync()
+        public Response ResponseSaveChanges()
         {
             try
             {

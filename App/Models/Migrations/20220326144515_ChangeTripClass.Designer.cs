@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Models;
 
@@ -11,9 +12,10 @@ using Models;
 namespace Models.Migrations
 {
     [DbContext(typeof(TripRateContext))]
-    partial class TripRateContextModelSnapshot : ModelSnapshot
+    [Migration("20220326144515_ChangeTripClass")]
+    partial class ChangeTripClass
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -57,12 +59,15 @@ namespace Models.Migrations
                     b.Property<DateTime>("UpdatedDate")
                         .HasColumnType("datetime2");
 
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
 
                     b.HasIndex("Localization")
                         .IsUnique();
 
-                    b.ToTable("ReviewTrips", (string)null);
+                    b.ToTable("Trips");
                 });
 
             modelBuilder.Entity("Models.User", b =>
@@ -96,7 +101,7 @@ namespace Models.Migrations
                     b.HasIndex("Email")
                         .IsUnique();
 
-                    b.ToTable("Users", (string)null);
+                    b.ToTable("Users");
                 });
 #pragma warning restore 612, 618
         }

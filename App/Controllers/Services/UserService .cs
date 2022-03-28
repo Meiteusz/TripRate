@@ -1,7 +1,9 @@
 ﻿using Controllers.Administration;
+using Microsoft.EntityFrameworkCore;
 using Models;
 using Models.DTO_s.Responses;
 using Models.Queries.Interfaces;
+using System;
 
 namespace Controllers
 {
@@ -18,7 +20,7 @@ namespace Controllers
         {
             var user = User.GetFirstOrDefault(email, password);
 
-            if (user.Id == null)
+            if (user.Id < 1)
                 return new ResponseData<User>(); //throw a Custom Exception
 
             TripRateAdministration.SetCurrentUserLogged(user);
@@ -39,6 +41,34 @@ namespace Controllers
                 Success = userEmail != string.Empty,
                 Data = userEmail
             };
+        }
+
+        public Response UpdateUserSettings(User user)
+        {
+            try
+            {
+                using (var context = new TripRateContext())
+                {
+                    context.Entry(user).State = EntityState.Modified;
+
+                    if (context.SaveChanges() > 0)
+                    {
+                        return new Response()
+                        {
+                            Success = true,
+                            Message = "User updated successfully"
+                        };
+                    }
+                    return new Response();
+                }
+            }
+            catch (Exception ex)
+            {
+                return new Response()
+                {
+                    Message = ex.Message
+                };
+            }
         }
     }
 }

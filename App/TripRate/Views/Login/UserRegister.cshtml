@@ -3,9 +3,14 @@
 <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
 <link rel="stylesheet" href="~/css/site.css" />
 
+<link rel="stylesheet" href="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.6/css/bootstrap.min.css"
+      asp-fallback-href="~/lib/bootstrap/dist/css/bootstrap.min.css"
+      asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute" />
+
 <h1>Register</h1>
 @using (Html.BeginForm())
 {
+    <!--
     <body>
         <div>
             <div class="form-group">
@@ -31,10 +36,9 @@
 
             <div class="form-text">
                 <input class="btn-primary" type="submit" value="Confirm" asp-action="ConfirmUserRegister" />
-                <input class="btn-primary" type="submit" value="Confirm" />
             </div>
         </div>
-    </body>
+    </body> -->
     <!--
     <body>
         <div class="slidershow middle">
@@ -61,4 +65,10 @@
             </div>
         </div>
     </body> -->
+
+    <ul class="nav nav-tabs">
+        <li class="active"><a href="#">One</a></li>
+        <li><a href="#">Two</a></li>
+        <li><a href="#">Three</a></li>
+    </ul>
 }
