@@ -9,6 +9,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Models", "App\Models\Models
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TripRate", "App\TripRate\TripRate.csproj", "{269AFDA8-3657-4CEF-AA74-C67CCA77FBCF}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ControllerTests", "Tests\ControllerTests\ControllerTests.csproj", "{80ED0308-4784-4DB9-9258-78A2EFAEB194}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ModelTests", "Tests\ModelTests\ModelTests.csproj", "{1A69A4E2-0D73-4E9E-A677-1D6FD90AD12F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +31,14 @@ Global
 		{269AFDA8-3657-4CEF-AA74-C67CCA77FBCF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{269AFDA8-3657-4CEF-AA74-C67CCA77FBCF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{269AFDA8-3657-4CEF-AA74-C67CCA77FBCF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{80ED0308-4784-4DB9-9258-78A2EFAEB194}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{80ED0308-4784-4DB9-9258-78A2EFAEB194}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{80ED0308-4784-4DB9-9258-78A2EFAEB194}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{80ED0308-4784-4DB9-9258-78A2EFAEB194}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1A69A4E2-0D73-4E9E-A677-1D6FD90AD12F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1A69A4E2-0D73-4E9E-A677-1D6FD90AD12F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1A69A4E2-0D73-4E9E-A677-1D6FD90AD12F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1A69A4E2-0D73-4E9E-A677-1D6FD90AD12F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
