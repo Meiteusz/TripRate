@@ -1,7 +1,7 @@
 TripRate
 
-Using SOLID principies;
-IMapper;
-EF Core;
-Ninject;
+Using SOLID principies; <br>
+IMapper; <br>
+EF Core; <br>
+Ninject; <br>
 NSubstitute to mock tests;
