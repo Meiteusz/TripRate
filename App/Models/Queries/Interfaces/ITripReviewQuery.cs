@@ -3,8 +3,9 @@ using Models.DTO_s.Responses;
 
 namespace Models.Queries.Interfaces
 {
-    public interface ITripQuery
+    public interface ITripReviewQuery
     {
         ResponseQuery<ReviewTrip> GetAll();
+        ResponseQuery<ReviewTrip> GetUserTripReviews(int userId);
     }
 }

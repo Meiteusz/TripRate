@@ -4,7 +4,7 @@
 
 namespace Models.Migrations
 {
-    public partial class test : Migration
+    public partial class tests : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

@@ -1,0 +1,30 @@
+﻿@using Controllers.Administration
+@model TripRate.Models.ModelTrip
+
+<h4>Hi <b>@TripRateAdministration.GetCurrentUserLogged().Name.ToString()</b>, welcome to your reviews list</h4>
+
+@using (Html.BeginForm())
+{
+    <body>
+        <div class="panel panel-primary">
+            <table class="table table-condensed table-striped">
+                <thead>
+                    <tr>
+                        <th>@Html.LabelFor(x => x.Title)</th>
+                        <th>@Html.LabelFor(x => x.Description)</th>
+                        <th>@Html.LabelFor(x => x.Localization)</th>
+                    </tr>
+                </thead>
+                @foreach (var trip in ViewBag.QueryUserReviewTrips)
+                {
+                    <tr>
+                        <td>@trip.Title</td>
+                        <td>@trip.Description</td>
+                        <td>@trip.Localization</td>
+                        <td><input type="button" value="Details" /></td>
+                    </tr>
+                }
+            </table>
+        </div>
+    </body>
+}

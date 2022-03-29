@@ -13,6 +13,6 @@ namespace Controllers.Administration
             => CurrentUserLogged = user;
 
         public static bool ExistsUserLogged()
-            => CurrentUserLogged != null;
+            => CurrentUserLogged != null && CurrentUserLogged.Id > 0;
     }
 }

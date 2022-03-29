@@ -12,8 +12,8 @@ using Models;
 namespace Models.Migrations
 {
     [DbContext(typeof(TripRateContext))]
-    [Migration("20220326151424_removeUserIdColumnFk")]
-    partial class removeUserIdColumnFk
+    [Migration("20220329005613_tests3")]
+    partial class tests3
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -59,10 +59,15 @@ namespace Models.Migrations
                     b.Property<DateTime>("UpdatedDate")
                         .HasColumnType("datetime2");
 
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
 
                     b.HasIndex("Localization")
                         .IsUnique();
+
+                    b.HasIndex("UserId");
 
                     b.ToTable("ReviewTrips");
                 });
@@ -99,6 +104,17 @@ namespace Models.Migrations
                         .IsUnique();
 
                     b.ToTable("Users");
+                });
+
+            modelBuilder.Entity("Models.Entities.ReviewTrip", b =>
+                {
+                    b.HasOne("Models.User", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("User");
                 });
 #pragma warning restore 612, 618
         }

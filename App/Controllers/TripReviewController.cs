@@ -7,12 +7,12 @@ using Models.Queries.Interfaces;
 
 namespace Controllers
 {
-    public class TripController : ITripController
+    public class TripReviewController : ITripReviewController
     {
         private readonly ITripService _tripService;
-        private readonly ITripQuery _tripQuery;
+        private readonly ITripReviewQuery _tripQuery;
 
-        public TripController(ITripService tripService, ITripQuery tripQuery)
+        public TripReviewController(ITripService tripService, ITripReviewQuery tripQuery)
         {
             this._tripService = tripService;
             this._tripQuery = tripQuery;
@@ -20,12 +20,22 @@ namespace Controllers
 
         public Response RegisterTrip(ReviewTrip trip)
         {
+            trip.UserId = Administration.TripRateAdministration.GetCurrentUserLogged().Id;
             return trip.Save();
         }
 
         public ResponseQuery<ReviewTrip> GetFullQuery()
         {
             return _tripQuery.GetAll();
+        }
+
+        public ResponseQuery<ReviewTrip> GetUserTripReviews(int userId)
+        {
+            if (userId > 0)
+            {
+                return _tripQuery.GetUserTripReviews(userId);
+            }
+            return new ResponseQuery<ReviewTrip>() { Message = "User not finded" };
         }
     }
 }

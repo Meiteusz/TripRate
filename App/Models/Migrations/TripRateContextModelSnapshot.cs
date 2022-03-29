@@ -57,12 +57,17 @@ namespace Models.Migrations
                     b.Property<DateTime>("UpdatedDate")
                         .HasColumnType("datetime2");
 
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
 
                     b.HasIndex("Localization")
                         .IsUnique();
 
-                    b.ToTable("ReviewTrips", (string)null);
+                    b.HasIndex("UserId");
+
+                    b.ToTable("ReviewTrips");
                 });
 
             modelBuilder.Entity("Models.User", b =>
@@ -96,7 +101,18 @@ namespace Models.Migrations
                     b.HasIndex("Email")
                         .IsUnique();
 
-                    b.ToTable("Users", (string)null);
+                    b.ToTable("Users");
+                });
+
+            modelBuilder.Entity("Models.Entities.ReviewTrip", b =>
+                {
+                    b.HasOne("Models.User", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("User");
                 });
 #pragma warning restore 612, 618
         }

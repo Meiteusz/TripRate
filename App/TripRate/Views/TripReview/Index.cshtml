@@ -1,13 +1,17 @@
-﻿@model TripRate.Models.ModelTrip
+﻿@using Controllers.Administration
+@model TripRate.Models.ModelTrip
 
 <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
 <link rel="stylesheet" href="~/css/site.css" />
 
 <h3>Trips</h3>
 
-<div>
-    <a asp-action="RegisterTripReview">Register a trip review</a>
-</div>
+@if (TripRateAdministration.ExistsUserLogged())
+{
+    <div>
+        <a asp-action="RegisterTripReview">Register a trip review</a>
+    </div>
+}
 
 @using (Html.BeginForm())
 {
@@ -21,7 +25,7 @@
                         <th>@Html.LabelFor(x => x.Localization)</th>
                     </tr>
                 </thead>
-                @foreach (var trip in ViewBag.QueryTrips)
+                @foreach (var trip in ViewBag.QueryReviewTrips)
                 {
                     <tr>
                         <td>@trip.Title</td>

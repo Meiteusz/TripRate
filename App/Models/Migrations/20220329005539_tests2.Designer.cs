@@ -12,8 +12,8 @@ using Models;
 namespace Models.Migrations
 {
     [DbContext(typeof(TripRateContext))]
-    [Migration("20220326150446_test")]
-    partial class test
+    [Migration("20220329005539_tests2")]
+    partial class tests2
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

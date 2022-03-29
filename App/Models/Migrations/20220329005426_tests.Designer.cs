@@ -12,8 +12,8 @@ using Models;
 namespace Models.Migrations
 {
     [DbContext(typeof(TripRateContext))]
-    [Migration("20220326144515_ChangeTripClass")]
-    partial class ChangeTripClass
+    [Migration("20220329005426_tests")]
+    partial class tests
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -59,15 +59,12 @@ namespace Models.Migrations
                     b.Property<DateTime>("UpdatedDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("UserId")
-                        .HasColumnType("int");
-
                     b.HasKey("Id");
 
                     b.HasIndex("Localization")
                         .IsUnique();
 
-                    b.ToTable("Trips");
+                    b.ToTable("ReviewTrips");
                 });
 
             modelBuilder.Entity("Models.User", b =>

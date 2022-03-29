@@ -5,9 +5,9 @@ namespace Controllers.Services
 {
     public class TripService : ITripService
     {
-        private readonly ITripQuery _tripQuery;
+        private readonly ITripReviewQuery _tripQuery;
 
-        public TripService(ITripQuery tripQuery)
+        public TripService(ITripReviewQuery tripQuery)
         {
             this._tripQuery = tripQuery;
         }

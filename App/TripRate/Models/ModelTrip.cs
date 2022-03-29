@@ -8,5 +8,7 @@
         public string Description { get; set; }
         public string Localization { get; set; }
         public int FavCounts { get; set; }
+
+        public int UserId { get; set; }
     }
 }

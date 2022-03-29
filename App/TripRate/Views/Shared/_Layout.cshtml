@@ -21,15 +21,18 @@
                 <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
                     <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-action="Index" asp-controller="Trips">Trips</a>
+                            <a class="nav-link text-dark" asp-area="" asp-action="Index" asp-controller="TripReview">Trips</a>
                         </li>
-                        @if (TripRateAdministration.GetCurrentUserLogged().Id > 0)
+                        @if (TripRateAdministration.ExistsUserLogged())
                         {
                             <li class="nav-item">
                                 <a class="nav-link text-dark" asp-area="" asp-action="Logout" asp-controller="Login">Logout</a>
                             </li>
                             <li>
                                 <a class="nav-link text-dark" asp-area="" asp-action="UserSettings" asp-controller="Login">@TripRateAdministration.GetCurrentUserLogged().Email</a>
+                            </li>
+                            <li>
+                                <a class="nav-link text-dark" asp-area="" asp-action="Index" asp-controller="MyReviews">My Reviews</a>
                             </li>
                         }
                         else

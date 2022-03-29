@@ -4,9 +4,10 @@ using Models.DTO_s.Responses;
 
 namespace Controllers.Interfaces
 {
-    public interface ITripController
+    public interface ITripReviewController
     {
         Response RegisterTrip(ReviewTrip trip);
         ResponseQuery<ReviewTrip> GetFullQuery();
+        ResponseQuery<ReviewTrip> GetUserTripReviews(int userId);
     }
 }

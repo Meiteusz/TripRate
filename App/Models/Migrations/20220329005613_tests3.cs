@@ -4,7 +4,7 @@
 
 namespace Models.Migrations
 {
-    public partial class UserIdColumnFk : Migration
+    public partial class tests3 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

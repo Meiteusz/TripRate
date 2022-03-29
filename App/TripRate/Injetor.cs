@@ -17,9 +17,9 @@ namespace TripRate
             service.AddScoped<IUserService, UserService>();
             service.AddScoped<IUserQuery, UserQuery>();
 
-            service.AddScoped<ITripController, TripController>();
+            service.AddScoped<ITripReviewController, TripReviewController>();
             service.AddScoped<ITripService, TripService>();
-            service.AddScoped<ITripQuery, TripQuery>();
+            service.AddScoped<ITripReviewQuery, TripReviewQuery>();
         }
     }
 }

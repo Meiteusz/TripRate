@@ -8,21 +8,21 @@ using TripRate.Models;
 namespace TripRate.Controllers
 {
     [Route("Trips")]
-    public class TripsController : Controller
+    public class TripReviewController : Controller
     {
-        private readonly ITripController _tripController;
+        private readonly ITripReviewController _tripReviewController;
         private readonly IMapper _mapper;
 
-        public TripsController(ITripController tripController, IMapper mapper)
+        public TripReviewController(ITripReviewController tripReviewController, IMapper mapper)
         {
-            this._tripController = tripController;
+            this._tripReviewController = tripReviewController;
             this._mapper = mapper;
         }
 
         [HttpGet("Index")]
         public async Task<IActionResult> Index()
         {
-            ViewBag.QueryTrips = _tripController.GetFullQuery().Query;
+            ViewBag.QueryReviewTrips = _tripReviewController.GetFullQuery().Query;
             return View();
         }
 
@@ -36,11 +36,11 @@ namespace TripRate.Controllers
         public async Task<IActionResult> ConfirmRegisterReviewTrip(ModelTrip modelTrip)
         {
             var trip = _mapper.Map<ReviewTrip>(modelTrip);
-            var response = _tripController.RegisterTrip(trip);
+            var response = _tripReviewController.RegisterTrip(trip);
 
             if (response.Success)
             {
-                return View("Index");
+                return RedirectToAction("Index", "Trips");
             }
             else
             {

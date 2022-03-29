@@ -29,7 +29,7 @@ namespace Models.Entities
         public int FavCounts { get; set; }
 
         public int UserId { get; set; }
-
+        
         [ForeignKey("UserId")]
         public User User { get; set; }
 
