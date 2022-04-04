@@ -1,15 +1,16 @@
-﻿using Models.Queries.Interfaces;
-using System.Linq;
+﻿using Microsoft.EntityFrameworkCore;
+using Models.Queries.Interfaces;
+using System.Threading.Tasks;
 
 namespace Models.Queries
 {
     public class UserQuery : IUserQuery
     {
-        public User GetUserByEmail(string email)
+        public async Task<User> GetUserByEmail(string email)
         {
             using (var context = new TripRateContext())
             {
-                return context.Users.SingleOrDefault(x => x.Email == email);
+                return await context.Users.SingleOrDefaultAsync(x => x.Email == email);
             }
         }
     }

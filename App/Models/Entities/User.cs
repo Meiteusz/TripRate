@@ -3,6 +3,7 @@ using Models.Enums;
 using System;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace Models
 {
@@ -61,11 +62,11 @@ namespace Models
             return base.Saved();
         }
 
-        public static User GetFirstOrDefault(string email, string password)
+        public static async Task<User> GetFirstOrDefault(string email, string password)
         {
             using (var context = new TripRateContext())
             {
-                return context.Users.SingleOrDefault(x => x.Email == email && x.Password == password);
+                return await context.Users.SingleOrDefaultAsync(x => x.Email == email && x.Password == password);
             }
         }
 

@@ -1,6 +1,7 @@
 ﻿using Models;
 using Models.Entities;
 using Models.DTO_s.Responses;
+using System.Threading.Tasks;
 
 namespace Controllers.Interfaces
 {
@@ -8,6 +9,6 @@ namespace Controllers.Interfaces
     {
         Response RegisterTrip(ReviewTrip trip);
         ResponseQuery<ReviewTrip> GetFullQuery();
-        ResponseQuery<ReviewTrip> GetUserTripReviews(int userId);
+        Task<ResponseQuery<ReviewTrip>> GetUserTripReviews(int userId);
     }
 }

@@ -2,6 +2,7 @@
 using Controllers.Administration;
 using Controllers.Interfaces;
 using Microsoft.AspNetCore.Mvc;
+using System.Threading.Tasks;
 
 namespace TripRate.Controllers
 {
@@ -16,9 +17,9 @@ namespace TripRate.Controllers
         }
 
         [HttpGet("Index")]
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            ViewBag.QueryUserReviewTrips = _tripController.GetUserTripReviews(TripRateAdministration.GetCurrentUserLogged().Id).Query;
+            ViewBag.QueryUserReviewTrips = _tripController.GetUserTripReviews(TripRateAdministration.GetCurrentUserLogged().Id).Result.Query;
             return View();
         }
     }

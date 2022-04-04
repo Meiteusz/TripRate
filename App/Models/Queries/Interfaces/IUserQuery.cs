@@ -1,7 +1,9 @@
-﻿namespace Models.Queries.Interfaces
+﻿using System.Threading.Tasks;
+
+namespace Models.Queries.Interfaces
 {
     public interface IUserQuery
     {
-        User GetUserByEmail(string email);
+        Task<User> GetUserByEmail(string email);
     }
 }

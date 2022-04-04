@@ -29,6 +29,11 @@ namespace Models
             modelBuilder.Entity<ReviewTrip>().Property<DateTime>("UpdatedDate");
         }
 
+        public override Task<int> SaveChangesAsync(bool acceptAllChangesOnSuccess, CancellationToken cancellationToken = default)
+        {
+            return base.SaveChangesAsync(acceptAllChangesOnSuccess, cancellationToken);
+        }
+
         public override int SaveChanges()
         {
             var entries = ChangeTracker.Entries()

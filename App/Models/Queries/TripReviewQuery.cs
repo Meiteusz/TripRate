@@ -2,6 +2,8 @@
 using Models.DTO_s.Responses;
 using Models.Queries.Interfaces;
 using System.Linq;
+using Microsoft.EntityFrameworkCore;
+using System.Threading.Tasks;
 
 namespace Models.Queries
 {
@@ -25,11 +27,13 @@ namespace Models.Queries
             }
         }
 
-        public ResponseQuery<ReviewTrip> GetUserTripReviews(int userId)
+        public async Task<ResponseQuery<ReviewTrip>> GetUserTripReviews(int userId)
         {
             using (var context = new TripRateContext())
             {
-                var userReviewTrips = context.ReviewTrips.Where(x => x.UserId == userId).ToList();
+                var userReviewTrips = await context.ReviewTrips
+                                                   .Where(x => x.UserId == userId)
+                                                   .ToListAsync();
 
                 if (userReviewTrips.Count > 0)
                 {

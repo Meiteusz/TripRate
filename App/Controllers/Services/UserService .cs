@@ -4,6 +4,7 @@ using Models;
 using Models.DTO_s.Responses;
 using Models.Queries.Interfaces;
 using System;
+using System.Threading.Tasks;
 
 namespace Controllers
 {
@@ -16,9 +17,9 @@ namespace Controllers
             this._userQuery = userQuery;
         }
 
-        public ResponseData<User> LoginByEmailAndPassword(string email, string password)
+        public async Task<ResponseData<User>> LoginByEmailAndPassword(string email, string password)
         {
-            var user = User.GetFirstOrDefault(email, password);
+            var user = await User.GetFirstOrDefault(email, password);
 
             if (user.Id < 1)
                 return new ResponseData<User>(); //throw a Custom Exception

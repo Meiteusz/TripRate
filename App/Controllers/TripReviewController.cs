@@ -4,6 +4,7 @@ using Models;
 using Models.Entities;
 using Models.DTO_s.Responses;
 using Models.Queries.Interfaces;
+using System.Threading.Tasks;
 
 namespace Controllers
 {
@@ -29,11 +30,11 @@ namespace Controllers
             return _tripQuery.GetAll();
         }
 
-        public ResponseQuery<ReviewTrip> GetUserTripReviews(int userId)
+        public async Task<ResponseQuery<ReviewTrip>> GetUserTripReviews(int userId)
         {
             if (userId > 0)
             {
-                return _tripQuery.GetUserTripReviews(userId);
+                return await _tripQuery.GetUserTripReviews(userId);
             }
             return new ResponseQuery<ReviewTrip>() { Message = "User not finded" };
         }

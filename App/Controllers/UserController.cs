@@ -2,6 +2,7 @@
 using Models;
 using Models.DTO_s.CustomExceptions;
 using Models.DTO_s.Responses;
+using System.Threading.Tasks;
 
 namespace Controllers
 {
@@ -14,9 +15,9 @@ namespace Controllers
             this._userService = userService;
         }
 
-        public ResponseData<User> LoginByEmailAndPassword(string email, string password)
+        public async Task<ResponseData<User>> LoginByEmailAndPassword(string email, string password)
         {
-            return _userService.LoginByEmailAndPassword(email, password);
+            return await _userService.LoginByEmailAndPassword(email, password);
         }
 
         public Response RegisterUser(User user)
