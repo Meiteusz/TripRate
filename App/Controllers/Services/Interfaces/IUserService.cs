@@ -7,6 +7,7 @@ namespace Controllers
     public interface IUserService
     {
         Task<ResponseData<User>> LoginByEmailAndPassword(string email, string password);
-        ResponseData<string> CheckEmailRegisterd(string email);
+        Task<ResponseData<string>> CheckEmailRegisterd(string email);
+        Task<Response> UpdateUserSettings(User user);
     }
 }

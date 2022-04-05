@@ -9,11 +9,11 @@ namespace Models.Queries
 {
     public class TripReviewQuery : ITripReviewQuery
     {
-        public ResponseQuery<ReviewTrip> GetAll()
+        public async Task<ResponseQuery<ReviewTrip>> GetAllAsync()
         {
             using (var context = new TripRateContext())
             {
-                var tripsList = context.ReviewTrips.ToList();
+                var tripsList = await context.ReviewTrips.ToListAsync();
 
                 if (tripsList.Count > 0)
                 {

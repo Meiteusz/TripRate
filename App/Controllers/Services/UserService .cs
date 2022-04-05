@@ -25,6 +25,7 @@ namespace Controllers
                 return new ResponseData<User>(); //throw a Custom Exception
 
             TripRateAdministration.SetCurrentUserLogged(user);
+
             return new ResponseData<User>()
             {
                 Success = true,
@@ -33,9 +34,9 @@ namespace Controllers
             };
         }
 
-        public ResponseData<string> CheckEmailRegisterd(string email)
+        public async Task<ResponseData<string>> CheckEmailRegisterd(string email)
         {
-            var userEmail = _userQuery.GetUserByEmail(email) == null ? string.Empty : email;
+            var userEmail = await _userQuery.GetUserByEmail(email) == null ? string.Empty : email;
 
             return new ResponseData<string>()
             {
@@ -44,15 +45,16 @@ namespace Controllers
             };
         }
 
-        public Response UpdateUserSettings(User user)
+        public async Task<Response> UpdateUserSettings(User user)
         {
             try
             {
                 using (var context = new TripRateContext())
                 {
                     context.Entry(user).State = EntityState.Modified;
+                    var changedRecords = await context.SaveChangesAsync();
 
-                    if (context.SaveChanges() > 0)
+                    if (changedRecords > 0)
                     {
                         return new Response()
                         {

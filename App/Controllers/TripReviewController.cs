@@ -5,6 +5,7 @@ using Models.Entities;
 using Models.DTO_s.Responses;
 using Models.Queries.Interfaces;
 using System.Threading.Tasks;
+using Models.BaseClasses;
 
 namespace Controllers
 {
@@ -19,20 +20,20 @@ namespace Controllers
             this._tripQuery = tripQuery;
         }
 
-        public Response RegisterTrip(ReviewTrip trip)
+        public async Task<Response> RegisterTrip(ReviewTrip trip)
         {
             trip.UserId = Administration.TripRateAdministration.GetCurrentUserLogged().Id;
-            return trip.Save();
+            return await trip.SaveAsync();
         }
 
-        public ResponseQuery<ReviewTrip> GetFullQuery()
+        public async Task<ResponseQuery<ReviewTrip>> GetFullQuery()
         {
-            return _tripQuery.GetAll();
+            return await _tripQuery.GetAllAsync();
         }
 
         public async Task<ResponseQuery<ReviewTrip>> GetUserTripReviews(int userId)
         {
-            if (userId > 0)
+            if (userId.IsValidId())
             {
                 return await _tripQuery.GetUserTripReviews(userId);
             }

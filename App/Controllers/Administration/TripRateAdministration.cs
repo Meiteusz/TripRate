@@ -1,4 +1,5 @@
 ﻿using Models;
+using Models.BaseClasses;
 
 namespace Controllers.Administration
 {
@@ -13,6 +14,6 @@ namespace Controllers.Administration
             => CurrentUserLogged = user;
 
         public static bool ExistsUserLogged()
-            => CurrentUserLogged != null && CurrentUserLogged.Id > 0;
+            => CurrentUserLogged != null && CurrentUserLogged.Id.IsValidId();
     }
 }

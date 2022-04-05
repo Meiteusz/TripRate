@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
 using Microsoft.Extensions.Configuration;
+using Models.BaseClasses;
 using Models.Entities;
 using System;
 using System.Linq;
@@ -29,16 +30,11 @@ namespace Models
             modelBuilder.Entity<ReviewTrip>().Property<DateTime>("UpdatedDate");
         }
 
-        public override Task<int> SaveChangesAsync(bool acceptAllChangesOnSuccess, CancellationToken cancellationToken = default)
-        {
-            return base.SaveChangesAsync(acceptAllChangesOnSuccess, cancellationToken);
-        }
-
-        public override int SaveChanges()
+        public async override Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
         {
             var entries = ChangeTracker.Entries()
-               .Where(x => x.State == EntityState.Added
-                        || x.State == EntityState.Modified);
+                .Where(x => x.State == EntityState.Added
+                || x.State == EntityState.Modified);
 
             foreach (var item in entries)
             {
@@ -48,14 +44,14 @@ namespace Models
                     item.Property("CreatedDate").CurrentValue = DateTime.Now;
             }
 
-            return base.SaveChanges();
+            return await base.SaveChangesAsync();
         }
 
-        public Response ResponseSaveChanges()
+        public async Task<Response> ResponseSaveChanges()
         {
             try
             {
-                var changedRecords = this.SaveChanges();
+                var changedRecords = await this.SaveChangesAsync();
 
                 if (changedRecords > 0)
                 {

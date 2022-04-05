@@ -2,6 +2,7 @@
 using Models;
 using Models.DTO_s.CustomExceptions;
 using Models.DTO_s.Responses;
+using Models.Enums;
 using System.Threading.Tasks;
 
 namespace Controllers
@@ -20,14 +21,15 @@ namespace Controllers
             return await _userService.LoginByEmailAndPassword(email, password);
         }
 
-        public Response RegisterUser(User user)
+        public async Task<Response> RegisterUser(User user)
         {
-            return user.Save();
+            user.UserType = UserTypes.DEFAULT;
+            return await user.SaveAsync();
         }
 
-        public Response ResetPassword(string email)
+        public async Task<Response> ResetPassword(string email)
         {
-            var response = _userService.CheckEmailRegisterd(email);
+            var response = await _userService.CheckEmailRegisterd(email);
 
             if (response.Success)
             {
@@ -38,13 +40,13 @@ namespace Controllers
             return new ResponseException() { Exception = new FailedToFindEmailException(email) };
         }
 
-        public Response UpdateUserSettings(User user)
+        public async Task<Response> UpdateUserSettings(User user)
         {
             var actualUser = TripRateAdministration.GetCurrentUserLogged();
             actualUser.Name = user.Name;
             actualUser.Email = user.Email;
             actualUser.Password = user.Password;
-            return _userService.UpdateUserSettings(actualUser);
+            return await _userService.UpdateUserSettings(actualUser);
         }
     }
 }

@@ -1,4 +1,6 @@
-﻿namespace Models
+﻿using System.Threading.Tasks;
+
+namespace Models
 {
     public abstract class EntityBase<T>
     {
@@ -7,27 +9,27 @@
         /// </summary>
         /// <param name="context">specific context witch the entity is inserted</param>
         /// <returns>A Response Dto with Success and Message</returns>
-        public virtual Response Save(TripRateContext context)
+        public virtual async Task<Response> SaveAsync(TripRateContext context)
         {
             context.ValidateStateOfEntity(this);
-            return context.ResponseSaveChanges();
+            return await context.ResponseSaveChanges();
         }
 
         /// <summary>
         /// Save the any entity in a any context
         /// </summary>
         /// <returns>A Response Dto with Success and Message</returns>
-        public virtual Response Save()
+        public async virtual Task<Response> SaveAsync()
         {
             return new Response();
         }
 
-        public virtual Response Validate()
+        public async virtual Task<Response> Validate()
         {
             return new Response();
         }
 
-        public virtual Response Saved()
+        public async virtual Task<Response> Saved()
         {
             return new Response();
         }

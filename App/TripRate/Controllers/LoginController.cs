@@ -31,7 +31,7 @@ namespace TripRate.Controllers
         [HttpPost]
         public async Task<IActionResult> Login(ModelUser user)
         {
-            var response = _userController.LoginByEmailAndPassword(user.Email, user.Password);
+            var response = await _userController.LoginByEmailAndPassword(user.Email, user.Password);
             if (response.Success)
             {
                 return RedirectToAction("Index", "Home");
@@ -49,7 +49,7 @@ namespace TripRate.Controllers
         public async Task<IActionResult> ConfirmUserRegister(ModelUser user)
         {
             var userCreate = _mapper.Map<User>(user);
-            var response = _userController.RegisterUser(userCreate);
+            var response = await _userController.RegisterUser(userCreate);
 
             if (response.Success)
             {

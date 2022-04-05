@@ -36,30 +36,30 @@ namespace Models
             return new User();
         }
 
-        public override Response Validate()
+        public async override Task<Response> Validate()
         {
-            return base.Validate();
+            return await base.Validate();
         }
 
-        public override Response Save()
+        public async override Task<Response> SaveAsync()
         {
-            this.Validate();
+            await this.Validate();
 
             using (var context = new TripRateContext())
             {
                 context.Users.Add(this);
-                var response = base.Save(context);
+                var response = await base.SaveAsync(context);
                 if (response.Success)
                 {
-                    this.Saved();
+                    await this.Saved();
                 }
                 return response;
             }
         }
 
-        public override Response Saved()
+        public async override Task<Response> Saved()
         {
-            return base.Saved();
+            return await base.Saved();
         }
 
         public static async Task<User> GetFirstOrDefault(string email, string password)
@@ -70,11 +70,11 @@ namespace Models
             }
         }
 
-        public static User GetFirstOrDefault(int id)
+        public async static Task<User> GetFirstOrDefault(int id)
         {
             using (var context = new TripRateContext())
             {
-                return context.Users.SingleOrDefault(x => x.Id == id);
+                return await context.Users.SingleOrDefaultAsync(x => x.Id == id);
             }
         }
     }

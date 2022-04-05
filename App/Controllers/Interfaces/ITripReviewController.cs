@@ -7,8 +7,8 @@ namespace Controllers.Interfaces
 {
     public interface ITripReviewController
     {
-        Response RegisterTrip(ReviewTrip trip);
-        ResponseQuery<ReviewTrip> GetFullQuery();
+        Task<Response> RegisterTrip(ReviewTrip trip);
+        Task<ResponseQuery<ReviewTrip>> GetFullQuery();
         Task<ResponseQuery<ReviewTrip>> GetUserTripReviews(int userId);
     }
 }

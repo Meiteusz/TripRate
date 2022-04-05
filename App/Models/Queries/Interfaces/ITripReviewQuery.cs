@@ -6,7 +6,7 @@ namespace Models.Queries.Interfaces
 {
     public interface ITripReviewQuery
     {
-        ResponseQuery<ReviewTrip> GetAll();
+        Task<ResponseQuery<ReviewTrip>> GetAllAsync();
         Task<ResponseQuery<ReviewTrip>> GetUserTripReviews(int userId);
     }
 }

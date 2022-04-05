@@ -8,5 +8,8 @@
                 return EntityConsts.Invalid_Id;
             return value;
         }
+
+        public static bool IsValidId(this int value)
+            => value != null && value > 0;
     }
 }

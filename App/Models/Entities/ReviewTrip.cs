@@ -2,6 +2,7 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace Models.Entities
 {
@@ -40,37 +41,37 @@ namespace Models.Entities
             return new ReviewTrip();
         }
 
-        public override Response Validate()
+        public async override Task<Response> Validate()
         {
-            return base.Validate();
+            return await base.Validate();
         }
 
-        public override Response Save()
+        public async override Task<Response> SaveAsync()
         {
-            this.Validate();
+            await this.Validate();
 
             using (var context = new TripRateContext())
             {
-                context.ReviewTrips.Add(this);
-                var response = base.Save(context);
+                await context.ReviewTrips.AddAsync(this);
+                var response = await base.SaveAsync(context);
                 if (response.Success)
                 {
-                    this.Saved();
+                    await this.Saved();
                 }
                 return response;
             }
         }
 
-        public override Response Saved()
+        public async override Task<Response> Saved()
         {
-            return base.Saved();
+            return await base.Saved();
         }
 
-        public static ReviewTrip GetFirstOrDefault(int id)
+        public async static Task<ReviewTrip> GetFirstOrDefault(int id)
         {
             using (var context = new TripRateContext())
             {
-                return context.ReviewTrips.SingleOrDefault(x => x.Id == id);
+                return await context.ReviewTrips.SingleOrDefaultAsync(x => x.Id == id);
             }
         }
     }
