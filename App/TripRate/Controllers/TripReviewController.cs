@@ -22,7 +22,7 @@ namespace TripRate.Controllers
         [HttpGet("Index")]
         public async Task<IActionResult> Index()
         {
-            ViewBag.QueryReviewTrips = _tripReviewController.GetFullQuery().Query;
+            ViewBag.QueryReviewTrips = _tripReviewController.GetFullQuery().Result.Query;
             return View();
         }
 
@@ -36,7 +36,7 @@ namespace TripRate.Controllers
         public async Task<IActionResult> ConfirmRegisterReviewTrip(ModelTrip modelTrip)
         {
             var trip = _mapper.Map<ReviewTrip>(modelTrip);
-            var response = _tripReviewController.RegisterTrip(trip);
+            var response = await _tripReviewController.RegisterTrip(trip);
 
             if (response.Success)
             {

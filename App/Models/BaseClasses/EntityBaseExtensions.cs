@@ -10,6 +10,9 @@
         }
 
         public static bool IsValidId(this int value)
-            => value != null && value > 0;
+            => value != null || value > 0;
+
+        public static bool IsInvalidId(this int value)
+            => value == null || value < 1;
     }
 }

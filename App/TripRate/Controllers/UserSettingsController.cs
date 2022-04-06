@@ -27,7 +27,7 @@ namespace TripRate.Controllers
         public async Task<IActionResult> ConfirmUpdate(ModelUser modelUser)
         {
             var user = _mapper.Map<User>(modelUser);
-            var response = _userController.UpdateUserSettings(user);
+            var response = await _userController.UpdateUserSettings(user);
 
             if (response.Success)
             {

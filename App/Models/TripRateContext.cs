@@ -38,10 +38,16 @@ namespace Models
 
             foreach (var item in entries)
             {
-                item.Property("UpdatedDate").CurrentValue = DateTime.Now;
+                if (item.Metadata.FindProperty("UpdatedDate") != null)
+                {
+                    item.Property("UpdatedDate").CurrentValue = DateTime.Now;
+                }
 
-                if (item.State == EntityState.Added)
+                if (item.Metadata.FindProperty("CreatedDate") != null &&
+                    item.State == EntityState.Added)
+                {
                     item.Property("CreatedDate").CurrentValue = DateTime.Now;
+                }
             }
 
             return await base.SaveChangesAsync();

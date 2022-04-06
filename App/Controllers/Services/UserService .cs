@@ -1,6 +1,7 @@
 ﻿using Controllers.Administration;
 using Microsoft.EntityFrameworkCore;
 using Models;
+using Models.BaseClasses;
 using Models.DTO_s.Responses;
 using Models.Queries.Interfaces;
 using System;
@@ -21,7 +22,7 @@ namespace Controllers
         {
             var user = await User.GetFirstOrDefault(email, password);
 
-            if (user.Id < 1)
+            if (user.Id.IsInvalidId())
                 return new ResponseData<User>(); //throw a Custom Exception
 
             TripRateAdministration.SetCurrentUserLogged(user);
