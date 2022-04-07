@@ -46,5 +46,25 @@ namespace Models.Queries
                 return new ResponseQuery<ReviewTrip>() { Message = "You dont have a trip review yet" };
             }
         }
+
+        public async Task<ResponseQuery<ReviewTrip>> GetTripReviewsWithLocalization(string localization)
+        {
+            using (var context = new TripRateContext())
+            {
+                var tripReviewsLocalization = await context.ReviewTrips
+                                                           .Where(x => x.Localization == localization)
+                                                           .ToListAsync();
+
+                if (tripReviewsLocalization.Count > 0)
+                {
+                    return new ResponseQuery<ReviewTrip>()
+                    {
+                        Success = true,
+                        Query = tripReviewsLocalization
+                    };
+                }
+                return new ResponseQuery<ReviewTrip>() { Message = "Don't have review to this trip yet" };
+            }
+        }
     }
 }

@@ -8,5 +8,6 @@ namespace Models.Queries.Interfaces
     {
         Task<ResponseQuery<ReviewTrip>> GetAllAsync();
         Task<ResponseQuery<ReviewTrip>> GetUserTripReviews(int userId);
+        Task<ResponseQuery<ReviewTrip>> GetTripReviewsWithLocalization(string localization);
     }
 }

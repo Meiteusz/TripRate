@@ -10,5 +10,6 @@ namespace Controllers.Interfaces
         Task<Response> RegisterTrip(ReviewTrip trip);
         Task<ResponseQuery<ReviewTrip>> GetFullQuery();
         Task<ResponseQuery<ReviewTrip>> GetUserTripReviews(int userId);
+        Task<ResponseQuery<ReviewTrip>> GetTripReviewsWithLocalization(string localization);
     }
 }

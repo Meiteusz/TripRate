@@ -39,5 +39,14 @@ namespace Controllers
             }
             return new ResponseQuery<ReviewTrip>() { Message = "User not finded" };
         }
+
+        public async Task<ResponseQuery<ReviewTrip>> GetTripReviewsWithLocalization(string localization)
+        {
+            if (!string.IsNullOrWhiteSpace(localization))
+            {
+                return await _tripQuery.GetTripReviewsWithLocalization(localization);
+            }
+            return new ResponseQuery<ReviewTrip>() { Message = "Localization not finded" };
+        }
     }
 }

@@ -1,1 +1,30 @@
-﻿<h1>Welcome to TripRate :)</h1>
+﻿@model TripRate.Models.ModelTrip
+
+<link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+<link rel="stylesheet" href="~/css/site.css" />
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCjBuHsE_sHtclNAiW8K04yQthDTL-tDC0&callback=initAutoComplete"></script>
+<script async src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCjBuHsE_sHtclNAiW8K04yQthDTL-tDC0&libraries=places&callback=initAutoComplete"></script>
+
+<h1>Welcome to TripRate :)</h1>
+
+@using (Html.BeginForm())
+{
+    <body>
+        <div>
+            @Html.LabelFor(x => x.Localization)
+            <div>
+                @Html.TextBoxFor(x => x.Localization, new { id = "SearchLocalization", @class = "form-control" })
+            </div>
+            <div>
+                <input type="submit" value="Search" asp-action="Search" />
+            </div>
+        </div>
+    </body>
+}
+
+<script>
+    initAutoComplete = () =>{
+        var input = document.getElementById('SearchLocalization');
+        var autocomplete = new google.maps.places.Autocomplete(input);
+    }
+</script>
