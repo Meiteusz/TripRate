@@ -22,16 +22,7 @@ namespace TripRate.Controllers
         {
             var tripReviews = await _tripReviewController.GetTripReviewsWithLocalization(localization);
 
-            if (!tripReviews.Success)
-            {
-                // Show the exception message on a h4
-            }
-            else
-            {
-                // Get the query values to the table on cshtml
-            }
-
-            return RedirectToAction("Index", "ExplorePlaces");
+            return RedirectToAction("Index", "ExplorePlaces", new { localization = localization});
         }
     }
 }

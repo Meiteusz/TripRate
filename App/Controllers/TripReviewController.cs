@@ -20,7 +20,7 @@ namespace Controllers
             this._tripQuery = tripQuery;
         }
 
-        public async Task<Response> RegisterTrip(ReviewTrip trip)
+        public async Task<Response> RegisterReviewTrip(ReviewTrip trip)
         {
             trip.UserId = Administration.TripRateAdministration.GetCurrentUserLogged().Id;
             return await trip.SaveAsync();

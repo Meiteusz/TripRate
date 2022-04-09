@@ -36,7 +36,7 @@ namespace TripRate.Controllers
         public async Task<IActionResult> ConfirmRegisterReviewTrip(ModelTrip modelTrip)
         {
             var trip = _mapper.Map<ReviewTrip>(modelTrip);
-            var response = await _tripReviewController.RegisterTrip(trip);
+            var response = await _tripReviewController.RegisterReviewTrip(trip);
 
             if (response.Success)
             {

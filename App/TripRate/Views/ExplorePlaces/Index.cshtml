@@ -1,1 +1,39 @@
-﻿<h4>Explore!</h4>
+﻿@model TripRate.Models.ModelTrip
+
+@using (Html.BeginForm())
+{
+    <body>
+        <div>
+            @if (ViewBag.TripReviewsSearchedResponse.Success)
+            {
+                <div>
+                    <input type="button" value="Hotels"/>
+                    <input type="button" value="Restaurants"/>
+                </div>
+                <div class="panel panel-primary">
+                    <table class="table table-condensed table-striped">
+                        <thead>
+                            <tr>
+                                <th>@Html.LabelFor(x => x.Title)</th>
+                                <th>@Html.LabelFor(x => x.Description)</th>
+                                <th>@Html.LabelFor(x => x.Localization)</th>
+                            </tr>
+                        </thead>
+                        @foreach (var tripReview in ViewBag.TripReviewsSearchedResponse.Query)
+                        {
+                            <tr>
+                                <td>@tripReview.Title</td>
+                                <td>@tripReview.Description</td>
+                                <td>@tripReview.Localization</td>
+                            </tr>
+                        }
+                    </table>
+                </div>
+            }
+            else
+            {
+                <h4>@ViewBag.TripReviewsSearchedResponse.Message</h4>
+            }
+        </div>
+    </body>
+}

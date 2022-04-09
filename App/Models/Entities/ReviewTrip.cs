@@ -6,7 +6,6 @@ using System.Threading.Tasks;
 
 namespace Models.Entities
 {
-    [Index(nameof(Localization), IsUnique = true)]
     public class ReviewTrip : EntityBase<ReviewTrip>
     {
         #region Properties
