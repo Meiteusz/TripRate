@@ -1,0 +1,29 @@
+﻿@using Models.Enums
+@model TripRate.Models.HotelModel
+
+@using (Html.BeginForm())
+{
+    <body>
+        <div>
+            <div class="form-group">
+                <div>@Html.LabelFor(x => x.HotelName)</div>
+                @Html.TextBoxFor(x => x.HotelName)
+            </div>
+            <div class="form-group">
+                <div>@Html.LabelFor(x => x.HotelType)</div>
+                @Html.DropDownListFor(x => x.HotelType, new SelectList(Enum.GetValues(typeof(HotelType))), "Select a Type")
+            </div>
+            <div class="form-group">
+                <div>@Html.LabelFor(x => x.Description)</div>
+                @Html.TextBoxFor(x => x.Description)
+            </div>
+            <div class="form-group">
+                <div>@Html.LabelFor(x => x.ReservationPrice)</div>
+                <input type="number" />
+            </div>
+            <div>
+                <input type="submit" value="Register" />
+            </div>
+        </div>
+    </body>
+}

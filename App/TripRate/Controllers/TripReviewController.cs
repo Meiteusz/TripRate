@@ -26,7 +26,7 @@ namespace TripRate.Controllers
             return View();
         }
 
-        [HttpGet]
+        [HttpGet("RegisterTripReview")]
         public async Task<IActionResult> RegisterTripReview()
         {
             return View();

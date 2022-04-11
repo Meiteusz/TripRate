@@ -14,6 +14,8 @@ namespace Models
     {
         public DbSet<User> Users { get; set; }
         public DbSet<ReviewTrip> ReviewTrips { get; set; }
+        public DbSet<Hotel> Hotels { get; set; }
+        public DbSet<HotelReview> HotelReviews { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -28,6 +30,9 @@ namespace Models
         {
             modelBuilder.Entity<ReviewTrip>().Property<DateTime>("CreatedDate");
             modelBuilder.Entity<ReviewTrip>().Property<DateTime>("UpdatedDate");
+
+            modelBuilder.Entity<HotelReview>().Property<DateTime>("CreatedDate");
+            modelBuilder.Entity<HotelReview>().Property<DateTime>("UpdatedDate");
         }
 
         public async override Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)

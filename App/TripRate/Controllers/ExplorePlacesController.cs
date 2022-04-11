@@ -20,5 +20,10 @@ namespace TripRate.Controllers
 
             return View();
         }
+
+        public async Task<IActionResult> OpenHotels()
+        {
+            return RedirectToAction("Index", "Hotel");
+        }
     }
 }
