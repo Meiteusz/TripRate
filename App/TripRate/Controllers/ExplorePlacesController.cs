@@ -1,6 +1,7 @@
 ﻿using Controllers.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
+using System.Web;
 
 namespace TripRate.Controllers
 {
@@ -17,6 +18,8 @@ namespace TripRate.Controllers
         {
             var tripReviews = await _tripReviewController.GetTripReviewsWithLocalization(localization);
             ViewBag.TripReviewsSearchedResponse = tripReviews;
+
+            var teste = HttpUtility.ParseQueryString(Request.QueryString.Value).Get("localization");
 
             return View();
         }
