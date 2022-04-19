@@ -1,3 +1,38 @@
-﻿<h4>All the Hotels</h4>
+﻿@model TripRate.Models.ModelHotel
+@using System.Web
+<h4>All the Hotels</h4>
 
-<a asp-action="HotelRegister">Register a hotel</a>
+@if (Controllers.Administration.TripRateAdministration.ExistsUserLogged())
+{
+    @Html.ActionLink("Register a hotel", "HotelRegister", "Hotel", new { localization = HttpUtility.ParseQueryString(Context.Request.QueryString.Value).Get("localization")}, new { @class = "btn btn-primary" } )
+}
+
+
+@using (Html.BeginForm())
+{
+    <body>
+        <div class="panel panel-primary">
+            <table class="table table-condensed table-striped">
+                <thead>
+                    <tr>
+                        <th>@Html.LabelFor(x => x.HotelName)</th>
+                        <th>@Html.LabelFor(x => x.HotelType)</th>
+                        <th>@Html.LabelFor(x => x.Localization)</th>
+                        <th>@Html.LabelFor(x => x.Description)</th>
+                        <th>@Html.LabelFor(x => x.ReservationPrice)</th>
+                    </tr>
+                </thead>
+                @foreach (var hotel in ViewBag.HotelQueryResponse.Query)
+                {
+                    <tr>
+                        <td>@hotel.HotelName</td>
+                        <td>@hotel.HotelType</td>
+                        <td>@hotel.Localization</td>
+                        <td>@hotel.Description</td>
+                        <td>@hotel.ReservationPrice</td>
+                    </tr>
+                }
+            </table>
+        </div>
+    </body>
+}

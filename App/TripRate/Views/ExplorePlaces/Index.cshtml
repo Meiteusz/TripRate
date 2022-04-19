@@ -1,4 +1,5 @@
-﻿@model TripRate.Models.ModelTrip
+﻿@using System.Web
+@model TripRate.Models.ModelTrip
 
 @using (Html.BeginForm())
 {
@@ -7,8 +8,8 @@
             @if (ViewBag.TripReviewsSearchedResponse.Success)
             {
                 <div>
-                    <input type="submit" value="Hotels" asp-action="OpenHotels" />
-                    <input type="button" value="Restaurants"/>
+                    @Html.ActionLink("Hotels", "OpenHotels", "ExplorePlaces", new { localization = HttpUtility.ParseQueryString(Context.Request.QueryString.Value).Get("localization")}, new { @class = "btn btn-primary" } )
+                    <input type="button" value="Restaurants" class="btn btn-primary"/>
                 </div>
                 <div class="panel panel-primary">
                     <table class="table table-condensed table-striped">

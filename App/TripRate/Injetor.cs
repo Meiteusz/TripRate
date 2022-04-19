@@ -20,6 +20,12 @@ namespace TripRate
             service.AddScoped<ITripReviewController, TripReviewController>();
             service.AddScoped<ITripService, TripService>();
             service.AddScoped<ITripReviewQuery, TripReviewQuery>();
+
+            service.AddScoped<IHotelController, HotelController>();
+            service.AddScoped<IHotelService, HotelService>();
+            service.AddScoped<IHotelQuery, HotelQuery>();
+
+            service.AddScoped<IEmailSender, EmailSender>();
         }
     }
 }

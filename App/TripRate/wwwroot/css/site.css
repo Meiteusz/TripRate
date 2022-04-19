@@ -153,3 +153,11 @@ input[name="r"] {
 #r3:checked ~ .s1 {
   margin-left: -40%;
 }
+
+footer {
+    background-color: rgb(167, 213, 234);
+}
+
+header {
+    background-color: rgb(167, 213, 234);
+}

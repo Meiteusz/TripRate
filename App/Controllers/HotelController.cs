@@ -1,5 +1,6 @@
 ﻿using Controllers.Interfaces;
 using Models;
+using Models.DTO_s.Responses;
 using Models.Entities;
 using Models.Queries.Interfaces;
 using System.Threading.Tasks;
@@ -15,9 +16,14 @@ namespace Controllers
             this._hotelQuery = hotelQuery;
         }
 
+        public async Task<ResponseQuery<Hotel>> GetFullQuery()
+        {
+            return await _hotelQuery.GetAllAsync();
+        }
+
         public async Task<Response> RegisterHotel(Hotel hotel)
         {
-            return await hotel.SaveAsync();
+            return await _hotelQuery.GetAllAsync();
         }
     }
 }

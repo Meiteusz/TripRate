@@ -1,5 +1,9 @@
 ﻿@using Models.Enums
-@model TripRate.Models.HotelModel
+@using System.Web
+@model TripRate.Models.ModelHotel
+
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCjBuHsE_sHtclNAiW8K04yQthDTL-tDC0&callback=initAutoComplete"></script>
+<script async src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCjBuHsE_sHtclNAiW8K04yQthDTL-tDC0&libraries=places&callback=initAutoComplete"></script>
 
 @using (Html.BeginForm())
 {
@@ -19,7 +23,11 @@
             </div>
             <div class="form-group">
                 <div>@Html.LabelFor(x => x.ReservationPrice)</div>
-                <input type="number" />
+                @Html.TextBoxFor(x => x.ReservationPrice, new { type = "number" })
+            </div>
+            <div class="form-group">
+                <div>@Html.LabelFor(x => x.Localization)</div>
+                @Html.TextBoxFor(x => x.Localization, new { id = "textBoxLocalization", value = HttpUtility.ParseQueryString(Context.Request.QueryString.Value).Get("localization"), style = "width: 320px"})
             </div>
             <div>
                 <input type="submit" value="Register" asp-action="RegisterHotel" />
@@ -27,3 +35,10 @@
         </div>
     </body>
 }
+
+<script>
+    initAutoComplete = () =>{
+        var input = document.getElementById('textBoxLocalization');
+        var autocomplete = new google.maps.places.Autocomplete(input);
+    }
+</script>

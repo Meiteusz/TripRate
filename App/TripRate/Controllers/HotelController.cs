@@ -18,17 +18,18 @@ namespace TripRate.Controllers
             this._hotelController = hotelController;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index(string localization)
+        {
+            ViewBag.HotelQueryResponse = await _hotelController.GetFullQuery();
+            return View();
+        }
+
+        public async Task<IActionResult> HotelRegister(string localization)
         {
             return View();
         }
 
-        public async Task<IActionResult> HotelRegister()
-        {
-            return View();
-        }
-
-        public async Task<IActionResult> RegisterHotel(HotelModel hotelModel)
+        public async Task<IActionResult> RegisterHotel(ModelHotel hotelModel)
         {
             var hotel = _mapper.Map<Hotel>(hotelModel);
             var response = await _hotelController.RegisterHotel(hotel);

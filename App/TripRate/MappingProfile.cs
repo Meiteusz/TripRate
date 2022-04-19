@@ -11,6 +11,7 @@ namespace TripRate
         {
             CreateMap<User, ModelUser>().ReverseMap();
             CreateMap<ReviewTrip, ModelTrip>().ReverseMap();
+            CreateMap<Hotel, ModelHotel>().ReverseMap();
         }
     }
 }

@@ -3,7 +3,7 @@ using System.ComponentModel;
 
 namespace TripRate.Models
 {
-    public class HotelModel
+    public class ModelHotel
     {
         public int Id { get; set; }
 

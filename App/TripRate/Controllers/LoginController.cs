@@ -1,8 +1,11 @@
 ﻿using AutoMapper;
 using Controllers;
 using Controllers.Administration;
+using Controllers.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using Models;
+using Models.DTO_s;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using TripRate.Models;
 namespace TripRate.Controllers
@@ -11,11 +14,13 @@ namespace TripRate.Controllers
     {
         private readonly IUserController _userController;
         private readonly IMapper _mapper;
+        private readonly IEmailSender _emailSender;
 
-        public LoginController(IUserController userController, IMapper mapper)
+        public LoginController(IUserController userController, IMapper mapper, IEmailSender emailSender)
         {
             this._userController = userController;
             this._mapper = mapper;
+            this._emailSender = emailSender;
         }
 
         public IActionResult Index()
@@ -61,8 +66,17 @@ namespace TripRate.Controllers
         [HttpPost]
         public async Task<IActionResult> SendEmailToResetPassword(string email)
         {
-            //var response = UserController.ResetPassword(email);
-            return View();
+            // email validation
+
+            var emailAdress = new List<EmailAdress>() 
+            {
+                new EmailAdress(email, email)
+            };
+
+            var message = new EmailMessage(emailAdress, "Test email", "This is the email test content");
+
+            await _emailSender.SendEmailAsync(message);
+            return View("Index");
         }
 
         [HttpGet]

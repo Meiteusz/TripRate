@@ -19,14 +19,12 @@ namespace TripRate.Controllers
             var tripReviews = await _tripReviewController.GetTripReviewsWithLocalization(localization);
             ViewBag.TripReviewsSearchedResponse = tripReviews;
 
-            var teste = HttpUtility.ParseQueryString(Request.QueryString.Value).Get("localization");
-
             return View();
         }
 
-        public async Task<IActionResult> OpenHotels()
+        public async Task<IActionResult> OpenHotels(string localization)
         {
-            return RedirectToAction("Index", "Hotel");
+            return RedirectToAction("Index", "Hotel", new { localization = localization });
         }
     }
 }
