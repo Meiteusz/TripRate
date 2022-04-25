@@ -1,7 +1,7 @@
 TripRate
 
 Using SOLID principies; <br>
-IMapper; <br>
+AutoMapper; <br>
 EF Core; <br>
 Ninject; <br>
 NSubstitute to mock tests;
